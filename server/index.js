@@ -11,6 +11,16 @@ const messageRouter = require("./routes/message.route");
 
 dotenv.config();
 
+app.use((req, res, next) => {
+  try {
+    console.log("💥 Incoming request:", req.method, req.url);
+    next();
+  } catch (err) {
+    console.error("🔥 Error before route handler:", err);
+    next(err);
+  }
+});
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(
