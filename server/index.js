@@ -30,6 +30,15 @@ app.use(
   })
 );
 
+console.log("💡 Registering routes...");
+
+try {
+  app.use("/api/auth", authRoute);
+  app.use("/api/messages", messageRouter);
+} catch (err) {
+  console.error("🔥 Route crash:", err);
+}
+
 const PORT = process.env.PORT || 3000;
 
 app.use("/api/auth", authRoute);
