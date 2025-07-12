@@ -1,4 +1,16 @@
 const express = require("express");
+
+// 🔍 Monkey patch express.Router to catch invalid paths
+const originalRouter = express.Router;
+express.Router = function (...args) {
+  try {
+    return originalRouter.apply(this, args);
+  } catch (err) {
+    console.error("❗ Error while creating a Router:", err.message);
+    throw err;
+  }
+};
+
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -6,11 +18,10 @@ const path = require("path");
 
 const connectDB = require("./lib/connect");
 const { app, server } = require("./lib/socket");
-const { authRoute } = require("./routes/auth.route");
-const messageRouter = require("./routes/message.route");
 
 dotenv.config();
 
+// Middleware
 app.use((req, res, next) => {
   try {
     console.log("💥 Incoming request:", req.method, req.url);
@@ -30,20 +41,25 @@ app.use(
   })
 );
 
+// Register Routes
 console.log("💡 Registering routes...");
+try {
+  const { authRoute } = require("./routes/auth.route");
+  app.use("/api/auth", authRoute);
+} catch (err) {
+  console.error("🔥 Failed to register /api/auth route:", err.message);
+}
 
 try {
-  app.use("/api/auth", authRoute);
+  const messageRouter = require("./routes/message.route");
   app.use("/api/messages", messageRouter);
 } catch (err) {
-  console.error("🔥 Route crash:", err);
+  console.error("🔥 Failed to register /api/messages route:", err.message);
 }
 
 const PORT = process.env.PORT || 3000;
 
-app.use("/api/auth", authRoute);
-app.use("/api/messages", messageRouter);
-
+// Serve frontend in production
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/dist")));
 
@@ -52,6 +68,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+// Start server
 server.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
   connectDB();
