@@ -9,7 +9,7 @@ const {
 } = require("../controllers/auth.controller");
 const protectRoute = require("../middleware/auth.middleware");
 
-const authRoute = express();
+const authRoute = express.Router();
 
 authRoute.post("/signup", signup);
 authRoute.post("/login", login);
