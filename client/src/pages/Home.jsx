@@ -3,7 +3,7 @@ import { useThemeStore } from "../store/useThemeStore";
 import Sidebar from "../components/Sidebar";
 import NoChatSelected from "../components/NoChatSelected";
 import ChatContainer from "../components/ChatContainer";
-import { themeClassMap } from "../constant";
+import { themeClassMap } from "../components/constant";
 
 const Home = () => {
   const { selectedUser } = useChatStore();

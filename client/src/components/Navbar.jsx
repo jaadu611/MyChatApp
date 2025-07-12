@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { LogOut, MessageSquare, Settings, User } from "lucide-react";
 import { useAuthStore } from "../store/useAuthStore";
 import { useThemeStore } from "../store/useThemeStore";
-import { themeClassMap } from "../constant";
+import { themeClassMap } from "./constant";
 
 const Navbar = () => {
   const { authUser, logout } = useAuthStore();

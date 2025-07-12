@@ -2,7 +2,7 @@ import { Camera, Mail, User } from "lucide-react";
 import { useAuthStore } from "../store/useAuthStore";
 import { useRef, useState } from "react";
 import { useThemeStore } from "../store/useThemeStore";
-import { themeClassMap } from "../constant";
+import { themeClassMap } from "../components/constant";
 
 const Profile = () => {
   const { authUser, isUpdatingProfile, updateProfile } = useAuthStore();

@@ -1,5 +1,5 @@
 import { useThemeStore } from "../store/useThemeStore";
-import { THEMES, themeClassMap } from "../constant";
+import { THEMES, themeClassMap } from "../components/constant";
 
 const Settings = () => {
   const { theme, setTheme } = useThemeStore();

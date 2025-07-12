@@ -1,5 +1,5 @@
 import { useThemeStore } from "../store/useThemeStore";
-import { themeClassMap } from "../constant/index";
+import { themeClassMap } from "../components/constant";
 import { useChatStore } from "../store/useChatStore";
 import { useAuthStore } from "../store/useAuthStore";
 import { useEffect, useState } from "react";

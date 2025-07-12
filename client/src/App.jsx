@@ -12,7 +12,7 @@ import { useAuthStore } from "./store/useAuthStore";
 import { useThemeStore } from "./store/useThemeStore";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Navbar from "./components/Navbar";
-import { themeClassMap } from "./constant/index";
+import { themeClassMap } from "../src/components/constant";
 
 const App = () => {
   const {

@@ -2,7 +2,7 @@ import { X } from "lucide-react";
 import { useAuthStore } from "../store/useAuthStore";
 import { useChatStore } from "../store/useChatStore";
 import { useThemeStore } from "../store/useThemeStore";
-import { themeClassMap } from "../constant";
+import { themeClassMap } from "../components/constant";
 
 const ChatHeader = () => {
   const { selectedUser, setSelectedUser } = useChatStore();

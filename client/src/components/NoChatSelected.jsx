@@ -1,6 +1,6 @@
 import { MessageSquare } from "lucide-react";
 import { useThemeStore } from "../store/useThemeStore";
-import { themeClassMap } from "../constant/index";
+import { themeClassMap } from "../components/constant";
 
 const NoChatSelected = () => {
   const { theme } = useThemeStore();
