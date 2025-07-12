@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
+dotenv.config();
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const path = require("path");
@@ -8,8 +9,6 @@ const connectDB = require("./lib/connect");
 const { app, server } = require("./lib/socket");
 const { authRoute } = require("./routes/auth.route");
 const messageRouter = require("./routes/message.route");
-
-dotenv.config();
 
 app.use(express.json());
 app.use(cookieParser());
@@ -23,10 +22,6 @@ app.use(
 app.use("/api/auth", authRoute);
 app.use("/api/messages", messageRouter);
 
-app.get("/", (req, res) => {
-  res.send("API is running.");
-});
-
 if (process.env.NODE_ENV === "production") {
   const clientBuildPath = path.join(__dirname, "../client/dist");
   app.use(express.static(clientBuildPath));
@@ -37,6 +32,8 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const PORT = process.env.PORT || 3000;
+
+console.log("🔍 MONGO_URL is:", process.env.MONGO_URL);
 
 server.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
