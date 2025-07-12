@@ -41,7 +41,6 @@ app.use(
   })
 );
 
-// Register Routes
 console.log("💡 Registering routes...");
 try {
   const { authRoute } = require("./routes/auth.route");
