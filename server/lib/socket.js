@@ -3,7 +3,7 @@ const http = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
 
-const app = express();
+const app = express.Router();
 const server = http.createServer(app);
 
 const userSocketMap = {};
